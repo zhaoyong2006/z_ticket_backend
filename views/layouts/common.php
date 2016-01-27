@@ -173,6 +173,7 @@ $bundle = BackendAsset::register($this);
                                 ['label'=>Yii::t('backend', 'ticket_cdate'), 'url'=>['/ticket-cdata/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                                 ['label'=>Yii::t('backend', 'ticket_status'), 'url'=>['/ticket-status/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                                 ['label'=>Yii::t('backend', 'ticket_topic'), 'url'=>['/ticket-topic/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                                ['label'=>Yii::t('backend', 'file'), 'url'=>['/file/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                             ]
                         ],
                         [
