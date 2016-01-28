@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
             <tr>
                 <td><?= $ticket->number?></td>
-                <td><?= $ticket->cdata->subject?></td>
+                <td><?= Html::a($ticket->cdata->subject,Yii::$app->urlManager->createUrl(array('t-center/detail','number'=>$ticket->number)));?></td>
                 <td><?= isset(TicketStatus::$status_map[$ticket->status_id]['name'])?TicketStatus::$status_map[$ticket->status_id]['name']:"未知"?></td>
                 <td><?= isset($ticket->userProfile->lastname)?$ticket->userProfile->lastname:"无"?></td>
                 <td><?= $ticket->updated ?></td>

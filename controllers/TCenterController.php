@@ -38,13 +38,15 @@ class TCenterController extends Controller{
             ->joinWith('cdata')
             ->joinWith('userProfile')
             ->all();
-//        echo "<pre>";
-//        print_r($ticket_list);exit;
 
         return $this->render('index',array(
             'menu_title' => $menu_title,
             'ticket_list' => $ticket_list
         ));
+    }
+
+    public function actionDetail($number){
+        return $this->render('detail',array());
     }
 
     private function getMenuRoute($key){
