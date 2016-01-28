@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\models\UserProfile;
 use Yii;
 
 /**
@@ -63,5 +64,50 @@ class Ticket extends \yii\db\ActiveRecord
             'created' => 'Created',
             'updated' => 'Updated',
         ];
+    }
+
+    /**
+     * 获取新工单号
+     * @return int
+     */
+    public function newTicketNumber()
+    {
+        $randNumber = self::randNumber(8);
+        $findResult = self::findAll(array('number' => $randNumber));
+        if (!empty($findResult)) {
+            self::newTicketNumber();
+        }
+        return (string)$randNumber;
+
+    }
+
+    /* Helper used to generate ticket IDs */
+    protected function randNumber($len = 6, $start = false, $end = false)
+    {
+
+        $start = (!$len && $start) ? $start : str_pad(1, $len, "0", STR_PAD_RIGHT);
+        $end = (!$len && $end) ? $end : str_pad(9, $len, "9", STR_PAD_RIGHT);
+
+        return mt_rand($start, $end);
+    }
+
+    public function getCdata()
+    {
+        return $this->hasOne(TicketCdata::className(), array('ticket_id' => 'ticket_id'));
+    }
+
+    public function getTicketTopic()
+    {
+        return $this->hasMany(TicketTopicRelation::className(), array('ticket_id' => 'ticket_id'));
+    }
+
+    public function getFile()
+    {
+        return $this->hasMany(File::className(), array('attribute_id'=>'ticket_id'))
+            ->where('attribute=:table_name',array('table_name'=>Ticket::tableName()));
+    }
+    public function getUserProfile()
+    {
+        return $this->hasOne(UserProfile::className(), array('user_id'=>'staff_id'));
     }
 }

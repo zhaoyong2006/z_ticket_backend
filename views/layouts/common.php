@@ -154,6 +154,13 @@ $bundle = BackendAsset::register($this);
                             ]
                         ],
                         [
+                            'label'=>Yii::t('backend', 'TicketCenter'),
+                            'icon'=>'<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>',
+                            'url'=>['/t-center/index'],
+                            //'badge'=> TimelineEvent::find()->today()->count(),
+                            //'badgeBgClass'=>'label-success',
+                        ],
+                        [
                             'label'=>Yii::t('backend', 'System'),
                             'options' => ['class' => 'header']
                         ],
@@ -171,7 +178,7 @@ $bundle = BackendAsset::register($this);
                             'items'=>[
                                 ['label'=>Yii::t('backend', 'ticket_list'), 'url'=>['/ticket/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                                 ['label'=>Yii::t('backend', 'ticket_cdate'), 'url'=>['/ticket-cdata/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-                                ['label'=>Yii::t('backend', 'ticket_status'), 'url'=>['/ticket-status/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                                ['label'=>Yii::t('backend', 'ticket_type'), 'url'=>['/ticket-type/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                                 ['label'=>Yii::t('backend', 'ticket_topic'), 'url'=>['/ticket-topic/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                                 ['label'=>Yii::t('backend', 'file'), 'url'=>['/file/index'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                             ]
