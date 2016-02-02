@@ -3,12 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\File */
+/* @var $model common\models\File */
 
-$this->title = 'Update File: ' . ' ' . $model->attach_id;
-$this->params['breadcrumbs'][] = ['label' => 'Files', 'url' => ['index']];
+$this->title = Yii::t('backend', 'Update {modelClass}: ', [
+    'modelClass' => 'File',
+]) . ' ' . $model->attach_id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Files'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->attach_id, 'url' => ['view', 'id' => $model->attach_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = Yii::t('backend', 'Update');
 ?>
 <div class="file-update">
 

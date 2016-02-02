@@ -157,8 +157,8 @@ $bundle = BackendAsset::register($this);
                             'label'=>Yii::t('backend', 'TicketCenter'),
                             'icon'=>'<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>',
                             'url'=>['/t-center/index'],
-                            //'badge'=> TimelineEvent::find()->today()->count(),
-                            //'badgeBgClass'=>'label-success',
+                            'badge'=> \common\models\Ticket::find()->where(array('status_id'=>\common\models\TicketStatus::CREATED))->count(),
+                            'badgeBgClass'=>'label-info',
                         ],
                         [
                             'label'=>Yii::t('backend', 'System'),

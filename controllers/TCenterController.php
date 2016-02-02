@@ -6,7 +6,10 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use backend\models\Ticket;
 use common\models\TicketStatus;
+use common\models\TicketTopic;
+use common\models\File;
 use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class TCenterController
@@ -46,7 +49,32 @@ class TCenterController extends Controller{
     }
 
     public function actionDetail($number){
-        return $this->render('detail',array());
+
+        $ticket_detail = Ticket::find()->where(array('number'=>$number))->one();
+        if(empty($ticket_detail)){
+            throw new BadRequestHttpException("不存在该工单");
+        }
+
+        return $this->render('detail',array(
+            'detail' => $ticket_detail
+        ));
+    }
+    /**
+     * @param $id
+     * @return $this
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function actionAttachmentDownload($id)
+    {
+        $model = File::findOne($id);
+        if (!$model) {
+            throw new NotFoundHttpException;
+        }
+
+        return \Yii::$app->response->sendStreamAsFile(
+            \Yii::$app->fileStorage->getFilesystem()->readStream($model->file_index),
+            $model->file_name
+        );
     }
 
     private function getMenuRoute($key){
